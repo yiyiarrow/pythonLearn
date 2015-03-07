@@ -1,6 +1,6 @@
-#filte word file
+#filter word file
 *.doc
 *.docx
 
-#file Debug dir
+#filter Debug dir
 Debug/
