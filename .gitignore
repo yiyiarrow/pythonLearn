@@ -1,6 +1,6 @@
-#¹ıÂËwordµµ
+#filte word file
 *.doc
 *.docx
 
-#¹ıÂË¼ş¼ĞDebug
+#file Debug dir
 Debug/
