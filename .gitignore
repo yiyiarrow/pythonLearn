@@ -1,6 +1,7 @@
 #filter word file
 *.doc
 *.docx
+*.pdf
 
 #filter Debug dir
 Debug/
