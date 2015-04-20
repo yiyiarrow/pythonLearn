@@ -1,0 +1,9 @@
+$def with (movies) 
+<h4>Welcome Here</h4>
+<h1>Crossin's Movie Site</h1>
+<hr>
+<p>Movies list:</p>
+$for movie in movies:
+    <li>
+         <a href="movie/$movie['id']">$movie['title']</a>
+    </li>
