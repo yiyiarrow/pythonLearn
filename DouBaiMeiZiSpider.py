@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# _*_ codeing: utf-8 _*_
+# _*_ coding: utf-8 _*_
 
 from bs4 import BeautifulSoup
 import os
