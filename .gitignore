@@ -3,6 +3,7 @@
 *.docx
 *.pdf
 *.pyc
+*.jpg
 
 #filter Debug dir
 Debug/
