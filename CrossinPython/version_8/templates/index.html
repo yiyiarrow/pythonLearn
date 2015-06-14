@@ -16,5 +16,9 @@ $if count > 0:
              <a href="/movie/$movie['id']">$movie['title']</a>
         </li>
 $else:
-    <p>There has no films can be found.</p>
+    <p>There has no films can be found
+    $if key:
+       related to <b><u>$key</u></b>.</p>
+
+<p><a href="/">return to homepage</a></p>
     

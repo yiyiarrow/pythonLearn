@@ -21,7 +21,7 @@ class index(object):
         
     def POST(self):
         data = web.input()
-        condition = r'title like "%' + data.title + r'%"'
+        condition = r'TITLE LIKE "%' + data.title + r'%"'
         movies = db.select('movie', where=condition)
         count = db.query('SELECT COUNT(*) AS COUNT FROM movie WHERE ' + condition)[0]['COUNT']
         return render.index(movies, count, data.title)
