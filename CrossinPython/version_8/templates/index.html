@@ -1,0 +1,20 @@
+$def with (movies, count, key) 
+<h4>Welcome Here</h4>
+<h1>Crossin's Movie Site</h1>
+<form action="/" method="post">
+    <input type="text" name="title" />
+    <input type="submit" value="search" />
+</form>
+<hr>
+$if count > 0:
+    <p>There are $count films totally
+    $if key:
+       related to <b><u>$key</u></b>.</p>
+    <p>Movies list:</p>
+    $for movie in movies:
+        <li>
+             <a href="/movie/$movie['id']">$movie['title']</a>
+        </li>
+$else:
+    <p>There has no films can be found.</p>
+    
