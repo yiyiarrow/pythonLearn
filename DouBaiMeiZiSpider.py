@@ -28,7 +28,7 @@ class PageDownload(threading.Thread):
 
     def run(self):
         while not self.thread_stop:
-            time.sleep(1)
+            time.sleep(3)
             socket = urllib2.urlopen(self.url)
             image = socket.read()
             print self.url[-15:]
@@ -41,9 +41,12 @@ class PageDownload(threading.Thread):
     def stop(self):
         self.thread_stop = True
 
-
+global total_photos
+total_photos = 0
 def handle(page, t, path):
-    url = 'http://www.dbmeizi.com/?p=%s' % page
+    i = 0
+    global total_photos
+    url = 'http://www.dbmeinv.com/?pager_offset=%s' % page
     socure_code = urllib2.urlopen(url)
     soup = BeautifulSoup(socure_code)
     my_girl = soup.find_all('img')
@@ -52,15 +55,21 @@ def handle(page, t, path):
         print u'已经全部抓取完毕'
         sys.exit()
 
-    print u'开始抓取...'
+    print u'开始抓取第%d页...' % page
 
     for girl in my_girl:
+        i += 1
         link = girl.get('src') or girl.get('data-src')
         download = PageDownload(link, path, t)
+        time.sleep(5)
         download.start()
 
+    print u"第%d页%d张" % (page, i)
+    total_photos += i
 
-for i in range(0, 21):
-    handle(i, i, new_path)
+if __name__ == '__main__':
+    #global total_photos
+    for i in range(1, 3):
+        handle(i, i, new_path)
 
-print u'抓取结束...'
+    print u'抓取结束...共%d张！' % total_photos
