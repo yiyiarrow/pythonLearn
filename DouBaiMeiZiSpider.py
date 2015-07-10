@@ -43,7 +43,7 @@ class PageDownload(threading.Thread):
 
 
 def handle(page, t, path):
-    url = 'http://www.dbmeizi.com/?p=%s' % page
+    url = 'http://www.dbmeinv.com/?pager_offset=%s' % page
     socure_code = urllib2.urlopen(url)
     soup = BeautifulSoup(socure_code)
     my_girl = soup.find_all('img')
@@ -60,7 +60,7 @@ def handle(page, t, path):
         download.start()
 
 
-for i in range(0, 21):
+for i in range(1, 21):
     handle(i, i, new_path)
 
 print u'抓取结束...'
