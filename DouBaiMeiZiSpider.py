@@ -71,5 +71,5 @@ if __name__ == '__main__':
     #global total_photos
     for i in range(1, 3):
         handle(i, i, new_path)
-
+		
     print u'抓取结束...共%d张！' % total_photos
