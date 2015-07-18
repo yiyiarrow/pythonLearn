@@ -28,7 +28,7 @@ class PageDownload(threading.Thread):
 
     def run(self):
         while not self.thread_stop:
-            time.sleep(3)
+            time.sleep(1)
             socket = urllib2.urlopen(self.url)
             image = socket.read()
             print self.url[-15:]
@@ -61,9 +61,10 @@ def handle(page, t, path):
         i += 1
         link = girl.get('src') or girl.get('data-src')
         download = PageDownload(link, path, t)
-        time.sleep(5)
+        time.sleep(6)
         download.start()
-
+		
+    time.sleep(2)	
     print u"第%d页%d张" % (page, i)
     total_photos += i
 
@@ -71,5 +72,5 @@ if __name__ == '__main__':
     #global total_photos
     for i in range(1, 3):
         handle(i, i, new_path)
-		
+	
     print u'抓取结束...共%d张！' % total_photos
