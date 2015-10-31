@@ -17,7 +17,6 @@ new_path = os.path.join(path1, u'豆瓣妹子')
 if not os.path.isdir(new_path):
     os.mkdir(new_path)
 
-
 class PageDownload(threading.Thread):
     def __init__(self, url, path, count):
         threading.Thread.__init__(self)
@@ -29,9 +28,11 @@ class PageDownload(threading.Thread):
     def run(self):
         while not self.thread_stop:
             time.sleep(1)
-            socket = urllib2.urlopen(self.url)
+            headers = {'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6'}
+            req = urllib2.Request(self.url, headers=headers) 
+            socket = urllib2.urlopen(req)
             image = socket.read()
-            print self.url[-15:]
+            print self.url
             f = open(self.path + os.sep + str(self.count) + self.url[-15:], 'wb')
             f.write(image)
             socket.close()
@@ -47,6 +48,7 @@ def handle(page, t, path):
     i = 0
     global total_photos
     url = 'http://www.dbmeinv.com/?pager_offset=%s' % page
+    print url
     socure_code = urllib2.urlopen(url)
     soup = BeautifulSoup(socure_code)
     my_girl = soup.find_all('img')
@@ -63,7 +65,7 @@ def handle(page, t, path):
         download = PageDownload(link, path, t)
         time.sleep(6)
         download.start()
-		
+
     time.sleep(2)	
     print u"第%d页%d张" % (page, i)
     total_photos += i
