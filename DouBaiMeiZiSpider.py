@@ -17,13 +17,15 @@ new_path = os.path.join(path1, u'豆瓣妹子')
 if not os.path.isdir(new_path):
     os.mkdir(new_path)
 
+
 class PageDownload(threading.Thread):
     def __init__(self, url, path, count):
         threading.Thread.__init__(self)
-        self.url   = url
-        self.path  = path
+        self.url = url
+        self.path = path
         self.count = count
         self.thread_stop = False
+
 
     def run(self):
         while not self.thread_stop:
@@ -42,15 +44,18 @@ class PageDownload(threading.Thread):
     def stop(self):
         self.thread_stop = True
 
+
 global total_photos
 total_photos = 0
+
+
 def handle(page, t, path):
     i = 0
     global total_photos
     url = 'http://www.dbmeinv.com/?pager_offset=%s' % page
     print url
-    socure_code = urllib2.urlopen(url)
-    soup = BeautifulSoup(socure_code)
+    source_code = urllib2.urlopen(url)
+    soup = BeautifulSoup(source_code)
     my_girl = soup.find_all('img')
 
     if my_girl == []:
@@ -70,9 +75,10 @@ def handle(page, t, path):
     print u"第%d页%d张" % (page, i)
     total_photos += i
 
+
 if __name__ == '__main__':
-    #global total_photos
+    # global total_photos
     for i in range(1, 3):
         handle(i, i, new_path)
-	
+
     print u'抓取结束...共%d张！' % total_photos
